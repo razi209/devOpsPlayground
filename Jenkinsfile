@@ -11,12 +11,12 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh '''
-                 Image = 'simple_webserver.razi:${BRANCH_NAME}_${BUILD_NUMBER}'
+                 IMAGE="simple_webserver.razi:${BRANCH_NAME}_${BUILD_NUMBER}"
                      cd simple_webserver
                   aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${DockerUrl}
                   docker build -t simple_webserver.razi .
-                  docker tag ${Image} ${DockerUrl}/${Image}
-                  docker push ${DockerUrl}/${Image}
+                  docker tag ${IMAGE} ${DockerUrl}/${IMAGE}
+                  docker push ${DockerUrl}/${IMAGE}
 
                     '''
 
